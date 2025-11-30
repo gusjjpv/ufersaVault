@@ -10,11 +10,7 @@ const Header = ({ isLoggedIn, onLogin, onLogout, onOpenUpload }) => {
           <span className="logo-text">ufersaVault</span>
         </div>
 
-        <nav className="nav-links">
-          <a href="#home" className="nav-link">Início</a>
-          <a href="#materials" className="nav-link">Materiais</a>
-          <a href="#upload" className="nav-link">Upload</a>
-        </nav>
+
 
         <div className="user-section">
           <button className="btn btn-secondary btn-sm" onClick={onOpenUpload} style={{ marginRight: '1rem' }}>
@@ -46,25 +42,36 @@ const Header = ({ isLoggedIn, onLogin, onLogout, onOpenUpload }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 1rem;
         }
 
         .logo-section {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
+          gap: 0.5rem;
         }
 
         .logo-img {
-          height: 40px;
+          height: 32px;
           width: auto;
         }
 
         .logo-text {
           font-family: var(--font-display);
           font-weight: 700;
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           color: var(--color-primary);
           letter-spacing: -0.02em;
+        }
+        
+        @media (min-width: 768px) {
+          .logo-img {
+            height: 40px;
+          }
+          .logo-text {
+            font-size: 1.5rem;
+          }
         }
 
         .nav-links {

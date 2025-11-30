@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { FaCloudUploadAlt, FaFileAlt, FaTimes } from 'react-icons/fa';
+import { DISCIPLINAS, DISCIPLINAS_POR_SEMESTRE } from '../constants';
 
 const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState(null);
   const [formData, setFormData] = useState({
     titulo: '',
-    disciplina: '',
+    disciplina: 'sistemas-distribuidos', // Default value
     professor: '',
-    semestre: '2024.1',
+    semestre: '2024.2',
     unidade: 'P1'
   });
 
@@ -59,7 +60,7 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
             <label>Título do Material</label>
             <input
               type="text"
-              placeholder="Ex: Prova 1 - Cálculo I"
+              placeholder="Ex: Prova 1 - 2023.2"
               className="form-input"
               value={formData.titulo}
               onChange={e => setFormData({ ...formData, titulo: e.target.value })}
@@ -70,14 +71,23 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
           <div className="form-row">
             <div className="form-group">
               <label>Disciplina</label>
-              <input
-                type="text"
-                placeholder="Ex: calculo-1"
-                className="form-input"
+              <select
+                className="form-select"
                 value={formData.disciplina}
                 onChange={e => setFormData({ ...formData, disciplina: e.target.value })}
                 required
-              />
+              >
+                <option value="">Selecione uma disciplina</option>
+                {DISCIPLINAS_POR_SEMESTRE.map((grupo) => (
+                  <optgroup key={grupo.semestre} label={grupo.semestre}>
+                    {grupo.materias.map((disc) => (
+                      <option key={disc.value} value={disc.value}>
+                        {disc.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
             </div>
             <div className="form-group">
               <label>Professor</label>
@@ -169,61 +179,32 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
 
         .modal-content {
           background: white;
-          padding: 2.5rem;
+          padding: 1.5rem;
           border-radius: var(--radius-lg);
-          width: 90%;
+          width: 95%;
           max-width: 600px;
           position: relative;
           max-height: 90vh;
           overflow-y: auto;
         }
 
-        .btn-close {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          background: none;
-          border: none;
-          font-size: 1.25rem;
-          color: var(--color-text-muted);
-          cursor: pointer;
-          padding: 0.5rem;
-          transition: color 0.2s;
-        }
-
-        .btn-close:hover {
-          color: var(--color-text-main);
-        }
-
-        .modal-title {
-          text-align: center;
-          color: var(--color-primary);
-          margin-bottom: 0.5rem;
-        }
-
-        .modal-desc {
-          text-align: center;
-          color: var(--color-text-muted);
-          margin-bottom: 2rem;
-        }
-
-        /* Reuse form styles from previous UploadSection */
-        .upload-form {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
-        .form-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
+        /* ... other styles ... */
 
         .form-row {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
           gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+          .modal-content {
+            padding: 2.5rem;
+            width: 90%;
+          }
+          
+          .form-row {
+            grid-template-columns: 1fr 1fr;
+          }
         }
 
         label {
@@ -278,6 +259,31 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
           cursor: pointer;
           width: 100%;
           height: 100%;
+        }
+
+        .btn-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: transparent;
+          border: none;
+          font-size: 1.1rem;
+          color: var(--color-text-muted);
+          cursor: pointer;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s ease;
+          z-index: 10;
+        }
+
+        .btn-close:hover {
+          background-color: #f1f5f9;
+          color: #ef4444;
+          transform: rotate(90deg);
         }
 
         .upload-icon {

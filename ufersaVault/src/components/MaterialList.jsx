@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { FaFilePdf, FaDownload, FaThumbsUp, FaSearch } from 'react-icons/fa';
+import { DISCIPLINAS, DISCIPLINAS_POR_SEMESTRE } from '../constants';
 
 const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(discipline || '');
 
-  const handleSearchSubmit = (e) => {
-    if (e.key === 'Enter' || e.type === 'click') {
-      onSearch(searchTerm);
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (value) {
+      onSearch(value);
     }
   };
+
+  // Find label for current discipline
+  const currentDisciplineLabel = DISCIPLINAS.find(d => d.value === discipline)?.label || discipline;
 
   return (
     <section id="materials" className="materials-section animate-fade-in">
@@ -19,22 +25,27 @@ const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch
               ← Voltar
             </button>
             <h2 className="section-title">
-              {discipline ? `Materiais de ${discipline}` : 'Buscar Materiais'}
+              {discipline ? `Materiais de ${currentDisciplineLabel} ` : 'Buscar Materiais'}
             </h2>
           </div>
           <div className="filters">
             <div className="search-wrapper">
-              <input
-                type="text"
-                placeholder="Buscar por disciplina (ex: calculo-1)..."
+              <select
                 className="search-input"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={handleSearchSubmit}
-              />
-              <button className="btn-search-icon" onClick={handleSearchSubmit}>
-                <FaSearch />
-              </button>
+                onChange={handleSearchChange}
+              >
+                <option value="">Selecione uma disciplina...</option>
+                {DISCIPLINAS_POR_SEMESTRE.map((grupo) => (
+                  <optgroup key={grupo.semestre} label={grupo.semestre}>
+                    {grupo.materias.map((disc) => (
+                      <option key={disc.value} value={disc.value}>
+                        {disc.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
             </div>
             <select className="filter-select">
               <option value="">Todos os tipos</option>
@@ -81,15 +92,15 @@ const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch
                         title="Baixar"
                       >
                         <FaDownload />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                      </a >
+                    </div >
+                  </div >
+                </div >
+              </div >
             ))}
-          </div>
+          </div >
         )}
-      </div>
+      </div >
 
       <style>{`
         .materials-section {
@@ -125,6 +136,7 @@ const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch
 
         .filters {
           display: flex;
+          flex-direction: column;
           gap: 1rem;
           width: 100%;
           max-width: 600px;
@@ -280,10 +292,11 @@ const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch
           
           .filters {
             width: auto;
+            flex-direction: row;
           }
         }
       `}</style>
-    </section>
+    </section >
   );
 };
 
