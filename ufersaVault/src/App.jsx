@@ -10,7 +10,7 @@ import DisciplineList from './components/DisciplineList';
 const API_BASE_URL = "https://048pefphaf.execute-api.us-east-1.amazonaws.com/v2";
 const COGNITO_DOMAIN = "https://us-east-1eqmpypsdp.auth.us-east-1.amazoncognito.com";
 const CLIENT_ID = "6mjn8qu815ltmkii12b27uutov";
-const REDIRECT_URI = "http://localhost:5173/"; // Update this for production
+const REDIRECT_URI = window.location.origin; // Dynamic redirect URI
 
 const LOGIN_URL = `${COGNITO_DOMAIN}/login?client_id=${CLIENT_ID}&response_type=token&scope=email+openid&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
 
