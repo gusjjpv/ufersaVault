@@ -32,7 +32,7 @@ const Hero = ({ onSearch, onUpload }) => {
 
       <style>{`
         .hero {
-          padding: 6rem 0 4rem;
+          padding: 3rem 0 2rem;
           position: relative;
           overflow: hidden;
         }
@@ -40,14 +40,14 @@ const Hero = ({ onSearch, onUpload }) => {
         .hero-content {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 3rem;
+          gap: 2rem;
           align-items: center;
           text-align: center;
         }
 
         .hero-title {
-          font-size: 2.5rem;
-          margin-bottom: 1.5rem;
+          font-size: 2rem;
+          margin-bottom: 1rem;
           color: var(--color-text-main);
         }
 
@@ -102,13 +102,19 @@ const Hero = ({ onSearch, onUpload }) => {
         }
 
         @media (min-width: 768px) {
+          .hero {
+             padding: 6rem 0 4rem;
+          }
+          
           .hero-content {
-            grid-template-columns: 1fr; /* Centered layout looks better for this content */
+            grid-template-columns: 1fr; 
             text-align: center;
+            gap: 3rem;
           }
           
           .hero-title {
             font-size: 3.5rem;
+            margin-bottom: 1.5rem;
           }
         }
       `}</style>

@@ -136,6 +136,7 @@ const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch
 
         .filters {
           display: flex;
+          flex-direction: column;
           gap: 1rem;
           width: 100%;
           max-width: 600px;
@@ -291,6 +292,7 @@ const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch
           
           .filters {
             width: auto;
+            flex-direction: row;
           }
         }
       `}</style>
