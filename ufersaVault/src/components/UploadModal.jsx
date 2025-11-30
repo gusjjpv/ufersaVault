@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { FaCloudUploadAlt, FaFileAlt, FaTimes } from 'react-icons/fa';
+import { DISCIPLINAS, DISCIPLINAS_POR_SEMESTRE } from '../constants';
 
 const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState(null);
   const [formData, setFormData] = useState({
     titulo: '',
-    disciplina: '',
+    disciplina: 'sistemas-distribuidos', // Default value
     professor: '',
-    semestre: '2024.1',
+    semestre: '2024.2',
     unidade: 'P1'
   });
 
@@ -59,7 +60,7 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
             <label>Título do Material</label>
             <input
               type="text"
-              placeholder="Ex: Prova 1 - Cálculo I"
+              placeholder="Ex: Prova 1 - 2023.2"
               className="form-input"
               value={formData.titulo}
               onChange={e => setFormData({ ...formData, titulo: e.target.value })}
@@ -70,14 +71,23 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
           <div className="form-row">
             <div className="form-group">
               <label>Disciplina</label>
-              <input
-                type="text"
-                placeholder="Ex: calculo-1"
-                className="form-input"
+              <select
+                className="form-select"
                 value={formData.disciplina}
                 onChange={e => setFormData({ ...formData, disciplina: e.target.value })}
                 required
-              />
+              >
+                <option value="">Selecione uma disciplina</option>
+                {DISCIPLINAS_POR_SEMESTRE.map((grupo) => (
+                  <optgroup key={grupo.semestre} label={grupo.semestre}>
+                    {grupo.materias.map((disc) => (
+                      <option key={disc.value} value={disc.value}>
+                        {disc.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
             </div>
             <div className="form-group">
               <label>Professor</label>

@@ -1,15 +1,6 @@
 import React from 'react';
 import { FaFolder } from 'react-icons/fa';
-
-// Mock Data for Disciplines
-const DISCIPLINES = [
-    { id: 1, name: 'Cálculo I', count: 12 },
-    { id: 2, name: 'Física III', count: 8 },
-    { id: 3, name: 'Algoritmos e Programação', count: 15 },
-    { id: 4, name: 'Química Geral', count: 5 },
-    { id: 5, name: 'Sistemas Distribuídos', count: 3 },
-    { id: 6, name: 'Banco de Dados', count: 9 },
-];
+import { DISCIPLINAS_POR_SEMESTRE } from '../constants';
 
 const DisciplineList = ({ onSelectDiscipline }) => {
     return (
@@ -18,19 +9,26 @@ const DisciplineList = ({ onSelectDiscipline }) => {
                 <h2 className="section-title">Disciplinas</h2>
                 <p className="section-subtitle">Selecione uma disciplina para ver os materiais</p>
 
-                <div className="disciplines-grid">
-                    {DISCIPLINES.map((disc) => (
-                        <div
-                            key={disc.id}
-                            className="discipline-card"
-                            onClick={() => onSelectDiscipline(disc.name)}
-                        >
-                            <div className="folder-icon">
-                                <FaFolder />
-                            </div>
-                            <div className="discipline-info">
-                                <h3 className="discipline-name">{disc.name}</h3>
-                                <span className="material-count">{disc.count} materiais</span>
+                <div className="semesters-container">
+                    {DISCIPLINAS_POR_SEMESTRE.map((grupo) => (
+                        <div key={grupo.semestre} className="semester-group">
+                            <h3 className="semester-title">{grupo.semestre}</h3>
+                            <div className="disciplines-grid">
+                                {grupo.materias.map((disc) => (
+                                    <div
+                                        key={disc.value}
+                                        className="discipline-card"
+                                        onClick={() => onSelectDiscipline(disc.value)}
+                                    >
+                                        <div className="folder-icon">
+                                            <FaFolder />
+                                        </div>
+                                        <div className="discipline-info">
+                                            <h3 className="discipline-name">{disc.label}</h3>
+                                            <span className="material-count">Ver materiais</span>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     ))}
@@ -54,9 +52,23 @@ const DisciplineList = ({ onSelectDiscipline }) => {
           margin-bottom: 3rem;
         }
 
+        .semesters-container {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem;
+        }
+
+        .semester-title {
+          font-size: 1.5rem;
+          color: var(--color-text-main);
+          margin-bottom: 1.5rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 2px solid var(--color-border);
+        }
+
         .disciplines-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: 1.5rem;
         }
 
@@ -89,7 +101,7 @@ const DisciplineList = ({ onSelectDiscipline }) => {
         }
 
         .discipline-name {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-weight: 600;
           color: var(--color-text-main);
         }
