@@ -103,6 +103,7 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
             </div>
           </div>
 
+
           <div className="form-row">
             <div className="form-group">
               <label>Semestre</label>
@@ -113,6 +114,22 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
                 onChange={e => setFormData({ ...formData, semestre: e.target.value })}
               />
             </div>
+            <div className="form-group">
+              <label>Unidade</label>
+              <select
+                className="form-select"
+                value={formData.unidade}
+                onChange={e => setFormData({ ...formData, unidade: e.target.value })}
+              >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>Final</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-row">
             <div className="form-group">
               <label>Tipo de Material</label>
               <select
@@ -125,22 +142,6 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
                 <option>Lista</option>
                 <option>Resumo</option>
                 <option>Outros</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-group">
-              <label>Unidade</label>
-              <select
-                className="form-select"
-                value={formData.unidade}
-                onChange={e => setFormData({ ...formData, unidade: e.target.value })}
-              >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>Final</option>
               </select>
             </div>
           </div>
@@ -225,12 +226,15 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
         }
 
         label {
+          display: block;
+          margin-bottom: 0.5rem;
           font-weight: 500;
           font-size: 0.9rem;
           color: var(--color-text-main);
         }
 
         .form-input, .form-select {
+          width: 100%;
           padding: 0.75rem;
           border: 1px solid var(--color-border);
           border-radius: var(--radius-md);
