@@ -10,7 +10,8 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
     disciplina: 'sistemas-distribuidos', // Default value
     professor: '',
     semestre: '2024.2',
-    unidade: 'P1'
+    unidade: '1',
+    tipo: 'Prova'
   });
 
   if (!isOpen) return null;
@@ -102,6 +103,7 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
             </div>
           </div>
 
+
           <div className="form-row">
             <div className="form-group">
               <label>Semestre</label>
@@ -119,11 +121,27 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
                 value={formData.unidade}
                 onChange={e => setFormData({ ...formData, unidade: e.target.value })}
               >
-                <option>P1</option>
-                <option>P2</option>
-                <option>P3</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
                 <option>Final</option>
-                <option>Outro</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label>Tipo de Material</label>
+              <select
+                className="form-select"
+                value={formData.tipo}
+                onChange={e => setFormData({ ...formData, tipo: e.target.value })}
+                required
+              >
+                <option>Prova</option>
+                <option>Lista</option>
+                <option>Resumo</option>
+                <option>Outros</option>
               </select>
             </div>
           </div>
@@ -208,12 +226,15 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
         }
 
         label {
+          display: block;
+          margin-bottom: 0.5rem;
           font-weight: 500;
           font-size: 0.9rem;
           color: var(--color-text-main);
         }
 
         .form-input, .form-select {
+          width: 100%;
           padding: 0.75rem;
           border: 1px solid var(--color-border);
           border-radius: var(--radius-md);

@@ -76,7 +76,11 @@ const MaterialList = ({ discipline, materials, loading, onBack, onVote, onSearch
                   <FaFilePdf />
                 </div>
                 <div className="card-content">
-                  <span className="card-tag">{item.unidade || 'Geral'}</span>
+                  <span className="card-tag">
+                    {item.unidade
+                      ? (item.unidade.toLowerCase() === 'final' ? 'Prova Final' : `Unidade ${item.unidade}`)
+                      : 'Geral'}
+                  </span>
                   <h3 className="card-title">{item.titulo}</h3>
                   <p className="card-meta">{item.disciplina} • {item.semestre} • Prof. {item.professor}</p>
                   <div className="card-footer">
