@@ -7,7 +7,7 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
   const [file, setFile] = useState(null);
   const [formData, setFormData] = useState({
     titulo: '',
-    disciplina: 'sistemas-distribuidos', // Default value
+    disciplina: 'sistemas-distribuidos',
     professor: '',
     semestre: '2024.2',
     unidade: '1',
@@ -119,8 +119,8 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
               <select
                 className="form-select"
                 value={formData.unidade}
-                onChange={e => setFormData({ ...formData, unidade: e.target.value })}
-              >
+                onChange={e => setFormData({ ...formData, unidade: e.target.value })}>
+
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -128,16 +128,14 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
               </select>
             </div>
           </div>
-
           <div className="form-row">
+
             <div className="form-group">
               <label>Tipo de Material</label>
               <select
                 className="form-select"
                 value={formData.tipo}
-                onChange={e => setFormData({ ...formData, tipo: e.target.value })}
-                required
-              >
+                onChange={e => setFormData({ ...formData, tipo: e.target.value })} required>
                 <option>Prova</option>
                 <option>Lista</option>
                 <option>Resumo</option>
@@ -145,7 +143,6 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
               </select>
             </div>
           </div>
-
           <div
             className={`drop-zone ${dragActive ? 'drag-active' : ''} ${file ? 'has-file' : ''}`}
             onDragEnter={handleDrag}
