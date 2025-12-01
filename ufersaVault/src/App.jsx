@@ -151,12 +151,22 @@ function App() {
 
       await axios.post(`${API_BASE_URL}/votar`, { material_id: materialId }, config);
 
-      // Optimistic update or refresh
-      fetchMaterials(selectedDiscipline);
+      // Sucesso
+      alert("Voto computado! 👍");
+      fetchMaterials(selectedDiscipline); // Atualiza a contagem na tela
+
     } catch (error) {
       console.error("Error voting:", error);
-      if (error.response && error.response.status === 401) {
-        alert("Sessão expirada. Faça login novamente.");
+
+      // Tratamento de Erros Específicos
+      if (error.response) {
+        if (error.response.status === 409) {
+          alert("⚠️ Você já votou neste material!");
+        } else if (error.response.status === 401) {
+          alert("Sessão expirada. Faça login novamente.");
+        } else {
+          alert("Erro ao votar. Tente novamente.");
+        }
       }
     }
   };
