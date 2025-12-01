@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/Ufersa_ 20 Anos_ Instagram_ Capa do Destaque (2).png" />
-    <link rel="apple-touch-icon" href="/Ufersa_ 20 Anos_ Instagram_ Capa do Destaque (2).png" />
+    <link rel="icon" type="image/png" href="/app-icon.png" />
+    <link rel="apple-touch-icon" href="/app-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#00afef" />
@@ -12,5 +11,10 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if (typeof navigator.serviceWorker !== "undefined") {
+        navigator.serviceWorker.register("serviceworker.js");
+      }
+    </script>
   </body>
 </html>
