@@ -30,17 +30,17 @@ Confira abaixo algumas imagens da aplicação em funcionamento:
 
 <div align="center">
   <h3>Página Inicial e Listagem</h3>
-  <img src="./public/Captura de tela de 2025-12-01 13-26-03.png" alt="Tela Inicial" width="800"/>
+  <img src="ufersaVault/public/Captura de tela de 2025-12-01 13-26-03.png" alt="Tela Inicial" width="800"/>
   <br/><br/>
   
   <h3>Modal de Upload</h3>
-  <img src="./public/Captura de tela de 2025-12-01 13-26-09.png" alt="Upload de Material" width="800"/>
+  <img src="ufersaVault/public/Captura de tela de 2025-12-01 13-26-09.png" alt="Upload de Material" width="800"/>
   <br/><br/>
 
   <h3>Visualização Mobile</h3>
   <div style="display: flex; justify-content: center; gap: 20px;">
-    <img src="./public/WhatsApp Image 2025-12-01 at 13.34.02.jpeg" alt="Mobile View 1" height="500"/>
-    <img src="./public/WhatsApp Image 2025-12-01 at 13.34.02 (1).jpeg" alt="Mobile View 2" height="500"/>
+    <img src="ufersaVault/public/WhatsApp Image 2025-12-01 at 13.34.02.jpeg" alt="Mobile View 1" height="500"/>
+    <img src="ufersaVault/public/WhatsApp Image 2025-12-01 at 13.34.02 (1).jpeg" alt="Mobile View 2" height="500"/>
   </div>
 </div>
 
