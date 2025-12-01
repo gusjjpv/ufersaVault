@@ -29,14 +29,35 @@ function App() {
 
   // 1. Check for Token on Load
   useEffect(() => {
+    // Tenta pegar da URL (Login recente)
     const hash = window.location.hash;
+
     if (hash) {
+      console.log("Hash encontrada na URL:", hash); // Debug
       const params = new URLSearchParams(hash.substring(1));
-      const accessToken = params.get('access_token');
-      if (accessToken) {
-        setToken(accessToken);
-        window.location.hash = ''; // Clean URL
-        // Optionally fetch all materials or wait for user interaction
+
+      // MUDANÇA IMPORTANTE: Pegando id_token em vez de access_token
+      const idToken = params.get('id_token');
+
+      if (idToken) {
+        console.log("Token extraído com sucesso!"); // Debug
+
+        // 1. Salva no Estado
+        setToken(idToken);
+        // 2. Salva no Navegador (Persistência)
+        localStorage.setItem('user_token', idToken);
+
+        // Limpa a URL para ficar bonita
+        window.location.hash = '';
+      } else {
+        console.log("Hash existe, mas não tem id_token. Verifique o console da AWS.");
+      }
+    } else {
+      // Se não tem hash, tenta recuperar do localStorage (F5 na página)
+      const storedToken = localStorage.getItem('user_token');
+      if (storedToken) {
+        console.log("Token recuperado do cache local.");
+        setToken(storedToken);
       }
     }
   }, []);
@@ -121,13 +142,32 @@ function App() {
     if (!token) return alert("Faça login para votar.");
 
     try {
-      await axios.post(`${API_BASE_URL}/votar`, { material_id: materialId }, {
-        headers: { Authorization: token }
-      });
-      // Optimistic update or refresh
-      fetchMaterials(selectedDiscipline);
+      const config = {
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      await axios.post(`${API_BASE_URL}/votar`, { material_id: materialId }, config);
+
+      // Sucesso
+      alert("Voto computado! 👍");
+      fetchMaterials(selectedDiscipline); // Atualiza a contagem na tela
+
     } catch (error) {
       console.error("Error voting:", error);
+
+      // Tratamento de Erros Específicos
+      if (error.response) {
+        if (error.response.status === 409) {
+          alert("⚠️ Você já votou neste material!");
+        } else if (error.response.status === 401) {
+          alert("Sessão expirada. Faça login novamente.");
+        } else {
+          alert("Erro ao votar. Tente novamente.");
+        }
+      }
     }
   };
 
@@ -143,7 +183,11 @@ function App() {
       <Header
         isLoggedIn={!!token}
         onLogin={() => window.location.href = LOGIN_URL}
-        onLogout={() => setToken(null)}
+        onLogout={() => {
+          setToken(null);
+          localStorage.removeItem('user_token');
+          window.location.href = '/';
+        }}
         onOpenUpload={() => setIsUploadOpen(true)}
       />
 
