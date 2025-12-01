@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/ChatGPT_Image_Dec_1__2025__02_05_06_PM-removebg-preview.png" alt="Logo UFERSA" width="300"/>
+  <img src="ufersaVault/public/ChatGPT_Image_Dec_1__2025__02_05_06_PM-removebg-preview.png" alt="Logo UFERSA" width="300"/>
   <br/>
   <br/>
   
