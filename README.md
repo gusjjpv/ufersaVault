@@ -1,7 +1,6 @@
 <div align="center">
   <img src="ufersaVault/public/ChatGPT_Image_Dec_1__2025__02_05_06_PM-removebg-preview.png" alt="Logo UFERSA" width="300"/>
   <br/>
-  <br/>
   
   [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
   [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -54,10 +53,10 @@ Confira abaixo algumas imagens da aplicação em funcionamento:
 
 ✅ **Em Produção**
 
-O sistema já está no ar e disponível para uso da comunidade acadêmica. Não é necessário realizar instalação local para utilizá-lo.
+O sistema já está no ar e disponível para uso da comunidade acadêmica.
 
----
+## 🔗 Acesso e Download
 
-<div align="center">
-  Desenvolvido com 💚 para a comunidade da UFERSA.
-</div>
+*   **🌐 Acesso Web:** [Acessar Ufersa Vault](https://vault.joaogustavo.grupo-03.sd.ufersa.dev.br)
+*   **📱 Download do App (Android):** [Baixar APK](https://vault.joaogustavo.grupo-03.sd.ufersa.dev.br/ufersaVault.apk)
+
