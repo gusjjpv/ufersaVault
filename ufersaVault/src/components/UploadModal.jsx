@@ -10,7 +10,8 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
     disciplina: 'sistemas-distribuidos', // Default value
     professor: '',
     semestre: '2024.2',
-    unidade: 'P1'
+    unidade: '1',
+    tipo: 'Prova'
   });
 
   if (!isOpen) return null;
@@ -113,17 +114,33 @@ const UploadModal = ({ isOpen, onClose, onUpload, loading }) => {
               />
             </div>
             <div className="form-group">
+              <label>Tipo de Material</label>
+              <select
+                className="form-select"
+                value={formData.tipo}
+                onChange={e => setFormData({ ...formData, tipo: e.target.value })}
+                required
+              >
+                <option>Prova</option>
+                <option>Lista</option>
+                <option>Resumo</option>
+                <option>Outros</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
               <label>Unidade</label>
               <select
                 className="form-select"
                 value={formData.unidade}
                 onChange={e => setFormData({ ...formData, unidade: e.target.value })}
               >
-                <option>P1</option>
-                <option>P2</option>
-                <option>P3</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
                 <option>Final</option>
-                <option>Outro</option>
               </select>
             </div>
           </div>
