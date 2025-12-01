@@ -1,0 +1,27 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "ufersaVault",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "ufVault",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "https://vault.joaogustavo.grupo-03.sd.ufersa.dev.br/Ufersa_ 20 Anos_ Instagram_ Capa do Destaque (2).png",
+      "type": "image/png",
+      "sizes": "1080x1080",
+      "isSquare": true,
+      "isPng": true,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 1080,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ],
+  "id": "br.dev.ufersa.sd.03-grupo.joaogustavo.vault"
+}

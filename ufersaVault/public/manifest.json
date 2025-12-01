@@ -1,0 +1,21 @@
+{
+    "name": "ufersaVault",
+    "short_name": "ufersaVault",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f8fafc",
+    "theme_color": "#00afef",
+    "description": "Compartilhamento de materiais da UFERSA",
+    "icons": [
+        {
+            "src": "/Ufersa_ 20 Anos_ Instagram_ Capa do Destaque (2).png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/Ufersa_ 20 Anos_ Instagram_ Capa do Destaque (2).png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
